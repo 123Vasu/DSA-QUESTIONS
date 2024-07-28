@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    // Function returns the second
+    // largest elements
+    int print2largest(vector<int> &arr) {
+        // Code Here        
+        int n = arr.size(); 
+        int largest = INT_MIN , second_largest = INT_MIN; 
+        
+        for(int i = 0 ; i<n ; i++) {
+            if(arr[i] > largest) {
+                second_largest = largest; 
+                largest = arr[i]; 
+            }   
+            
+            else if(arr[i] > second_largest && arr[i] != largest) {
+                second_largest = arr[i]; 
+            }
+        }   
+        
+        if(second_largest == INT_MIN) return -1; 
+        return second_largest; 
+        
+        
+    }
+};
