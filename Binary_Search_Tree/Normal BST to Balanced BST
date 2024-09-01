@@ -1,0 +1,38 @@
+class Solution{
+    
+    public:
+    // Your are required to complete this function
+    // function should return root of the modified BST     
+    
+    void dfs(Node *root , vector<int> &inOrder) {
+        if(root == NULL) return;             
+        
+        dfs(root -> left , inOrder);   
+        inOrder.push_back(root -> data);     
+        dfs(root -> right , inOrder);                                                
+    }
+    Node *inOrdertoBST(int start , int end , vector<int> &inOrder) {
+        if(start > end) return NULL;           
+        
+        int mid = (start + end) / 2;     
+        
+        Node *root = new Node(inOrder[mid]);    
+        
+        root -> left = inOrdertoBST(start , mid-1 , inOrder);    
+        
+        root -> right = inOrdertoBST(mid + 1 , end , inOrder);     
+        
+        return root; 
+        
+    }
+    
+    Node* buildBalancedTree(Node* root)
+    {
+    	// Code here
+    	
+    	vector<int>inOrder;      
+    	dfs(root , inOrder);     
+    	
+    	return inOrdertoBST(0 , inOrder.size() - 1 , inOrder);     
+    }
+};
