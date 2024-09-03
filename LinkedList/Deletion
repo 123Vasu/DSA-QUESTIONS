@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>  
+using namespace std;          
+
+class Node {
+    public: 
+    int data; 
+    Node *next;    
+    
+    Node(int data1) {
+        data = data1;    
+        next = NULL;     
+    }
+};       
+
+void printNode(Node *head) {
+    Node *temp = head;  
+    
+    while(temp != NULL) {
+        cout << temp -> data << " ";   
+        temp = temp -> next;     
+    }
+}     
+
+Node *deleteFromStart(Node *head) {
+    return head -> next; 
+}   
+
+void deleteFromEnd(Node *head) {
+    Node *temp = head;       
+    while(temp -> next -> next != NULL) {
+        temp = temp -> next;   
+    }
+    
+    temp -> next = NULL;    
+}   
+
+Node *DeleteaGivenNode(Node *head , int val) {  
+    
+    if(head -> data == val) {
+        return head -> next;       
+    }
+    Node *temp = head;
+    Node *prev = NULL;   
+    
+    while(temp -> data != val) {
+        prev = temp;  
+        temp = temp -> next;   
+    }
+    
+    prev -> next = temp -> next;  
+    return head;   
+}
+
+int main() {
+    // Write C++ code here
+    Node *head = new Node(10);   
+    Node *second = new Node(20);   
+    Node *third = new Node(30); 
+    Node *fourth = new Node(40);       
+    
+    head -> next = second;   
+    second -> next = third;    
+    third -> next = fourth;  
+    fourth -> next = NULL;     
+    
+    printNode(head);     
+    cout<<endl; 
+    cout<<"After Deleting a value from begining, List will be updated to : ";
+    head = deleteFromStart(head);   
+    printNode(head);      
+    cout << endl; 
+    cout << "Delete From the end : "; 
+    deleteFromEnd(head);       
+    printNode(head);     
+    cout << endl;    
+    cout << "Delete a given node : ";   
+    head = DeleteaGivenNode(head , 30);          
+    printNode(head);       
+    return 0;
+}
