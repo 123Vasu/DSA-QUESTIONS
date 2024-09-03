@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>  
+using namespace std;          
+
+class Node {
+    public: 
+    int data; 
+    Node *next;    
+    
+    Node(int data1) {
+        data = data1;    
+        next = NULL;     
+    }
+};       
+
+void printNode(Node *head) {
+    Node *temp = head;  
+    
+    while(temp != NULL) {
+        cout << temp -> data << " ";   
+        temp = temp -> next;     
+    }
+}     
+
+Node *insertAtbegining(Node *head) {
+    Node *new_node = new Node(50);     
+    
+    new_node -> next = head;   
+    return new_node;     
+}    
+
+void insertAfterGivenNode(Node *head , int val) {  
+    Node *new_node = new Node(60);   
+    Node *temp = head;   
+    
+    while(temp -> data != val) {
+        temp = temp -> next;   
+    }
+    
+    new_node -> next = temp -> next;    
+    temp -> next = new_node;      
+}    
+
+void insertAtEnd(Node *head) {
+    Node *new_node = new Node(70);     
+    Node *temp = head;    
+    
+    while(temp -> next != NULL) {
+        temp = temp -> next;  
+    }
+    
+    temp -> next = new_node;     
+}
+
+int main() {
+    // Write C++ code here
+    Node *head = new Node(10);   
+    Node *second = new Node(20);   
+    Node *third = new Node(30);     
+    
+    head -> next = second;   
+    second -> next = third;    
+    third -> next = NULL;   
+    
+    printNode(head);     
+    cout<<endl; 
+    cout<<"After inserting a value at begining, List will be updated to : ";
+    head = insertAtbegining(head);   
+    printNode(head);      
+    cout << endl; 
+    cout << "Insert After a Given Node : "; 
+    insertAfterGivenNode(head , 20);       
+    printNode(head);     
+    cout << endl;    
+    cout << "Insert at end : ";   
+    insertAtEnd(head);          
+    printNode(head);       
+    return 0;
+}
